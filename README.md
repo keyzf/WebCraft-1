@@ -1,4 +1,7 @@
 # WebCraft
+
+![https://somepythonprogrammer.github.io/WebCraft/](https://img.shields.io/badge/Click%20Here-To%20Play!-brightgreen)
+
 ### A minecraft clone written in javascript using the p5.js library!
 ### This is an open-source project and is open to contributions.
 ### And it really needs them to improve and turn into an actual game

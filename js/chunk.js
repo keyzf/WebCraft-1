@@ -1,19 +1,24 @@
 class Chunk {
   constructor(x, z) {
-    this.position = { x: x, z: z };
+    this.cubes = [];
+    this.position = { x: x + 1, z: z + 1 };
     for (i = 0; i < chunkWidth; i++) {
       cubes[i] = [];
+      this.cubes[i] = [];
       for (j = 0; j < chunkLength; j++) {
         cubes[i].push(new block(i + x * chunkWidth, j + x * chunkLength));
+        this.cubes[i][j].push(
+          new block(i + x * chunkWidth, j + x * chunkLength)
+        );
       }
     }
   }
   render() {
-    for (var i in cubes) {
-      for (var j in cubes[i]) {
-        cubes[i][j].render();
-        cubes[i][j].playerInteract();
-        cubes[i][j].update();
+    for (var i in this.cubes) {
+      for (var j in this.cubes[i]) {
+        this.cubes[i][j].render();
+        this.cubes[i][j].playerInteract();
+        this.cubes[i][j].update();
       }
     }
   }

@@ -1,4 +1,5 @@
-var cubes = [];
+var cubes = [],
+  chunks = [];
 var player,
   playerTouching = false,
   chunkWidth = 500,
@@ -11,10 +12,10 @@ var playerCanFly = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  for (i = 0; i < chunkWidth; i++) {
-    cubes[i] = [];
-    for (j = 0; j < chunkLength; j++) {
-      cubes[i].push(new block(i, j));
+  for(var i=0;i<2;i++){
+    chunks[i] = []
+    for(var j=0;i<2;j++){
+      chunks[i].push(new Chunk(i,j))
     }
   }
   player = createRoverCam();
@@ -22,18 +23,19 @@ function setup() {
   player.setState({ speed: 5 });
   player.position.y =
     cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
-  player.position.x = cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.x;
-  player.position.z = cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.z;
+  player.position.x =
+    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.x;
+  player.position.z =
+    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.z;
 }
 
 function draw() {
   background("black");
   normalMaterial();
-  for (var i in cubes) {
-    for (var j in cubes[i]) {
-      cubes[i][j].render();
-      cubes[i][j].playerInteract();
-      cubes[i][j].update();
+  for(var i in chunks){
+    for(var j in chunks[i]){
+      chunks[i][j].render()
+      chunks[i][j].update()
     }
   }
 }

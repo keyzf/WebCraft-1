@@ -44,7 +44,7 @@ function draw() {
     }
     player = createRoverCam();
     player.usePointerLock();
-    player.setState({ speed: 5 });
+    player.setState({ speed: 3 });
     player.position.y =
       cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
     player.position.x =
@@ -93,6 +93,12 @@ function draw() {
           playerTouching = false;
           fallSpeed = 1;
           jumpFrame = 2;
+        }
+        else if(keyDown(224)){
+          player.setState({speed:5})
+        }
+        else if(!keyDown(224)){
+          player.setState({speed:3})
         } else {
           try {
             player.position.y =
@@ -129,7 +135,6 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
-//EOF
 
 function getPlayerTouchingGround() {
   try {

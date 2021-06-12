@@ -12,6 +12,7 @@ var gameState = "loading";
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  document.addEventListener('contextmenu', event => event.preventDefault());
   console.log('loading...')
 }
 

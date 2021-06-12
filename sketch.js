@@ -12,13 +12,14 @@ renderdist = 2;
 var playerCanFly = false;
 var gameState = "loading";
 
-function setup() {}
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+}
 
 function draw() {
   background("black");
   normalMaterial();
   if (gameState === "loading") {
-    createCanvas(windowWidth, windowHeight, WEBGL);
     for (var i = 0; i < renderdist; i++) {
       chunks[i] = [];
       for (var j = 0; j < renderdist; j++) {

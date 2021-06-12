@@ -1,24 +1,20 @@
-class chunk {
+class Chunk {
   constructor(x, z) {
-    this.cubes = [];
     this.position = { x: x + 1, z: z + 1 };
-    for (i = 0; i < chunkWidth; i++) {
+    for (var i = 0; i < chunkWidth; i++) {
       cubes[i] = [];
-      this.cubes[i] = [];
-      for (j = 0; j < chunkLength; j++) {
-        cubes[i].push(new block(i + x * chunkWidth, j + x * chunkLength));
-        this.cubes[i][j].push(
-          new block(i + x * chunkWidth, j + x * chunkLength)
-        );
+      for (var j = 0; j < chunkLength; j++) {
+        cubes[i].push(new block(i, j));
       }
     }
   }
   render() {
-    for (var i in this.cubes) {
-      for (var j in this.cubes[i]) {
-        this.cubes[i][j].render();
-        this.cubes[i][j].playerInteract();
-        this.cubes[i][j].update();
+    console.log(cubes[1][1].pos)
+    for (var i in cubes) {
+      for (var j in cubes[i]) {
+        cubes[i][j].render();
+        cubes[i][j].playerInteract();
+        cubes[i][j].update();
       }
     }
   }
@@ -27,14 +23,14 @@ class chunk {
       if (playerCanFly == false) {
         playerCanFly = true;
         playerTouching = false;
-        console.log("can fly");
+        //console.log("can fly");
       } else {
         playerCanFly = false;
-        console.log("cant fly");
+        //console.log("cant fly");
       }
       toggledFly = true;
     }
-    if (frameCount % 10 == 00) {
+    if (frameCount % 10 == 0) {
       toggledFly = false;
     }
     if (!playerCanFly) {
@@ -42,7 +38,7 @@ class chunk {
         player.position.y += fallSpeed;
         if (fallSpeed <= terminalVel && frameCount % 4 == 0) {
           fallSpeed += 5;
-          console.log("falling...");
+          //console.log("falling...");
         }
         if (getPlayerTouchingGround()) {
           fallSpeed = 20;

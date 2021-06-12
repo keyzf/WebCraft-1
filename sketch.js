@@ -1,100 +1,42 @@
 var cubes = [];
+var chunks = [];
 var player,
   playerTouching = false,
-  chunkWidth = 500,
-  chunkDepth = 500,
+  chunkWidth = 20,
+  chunkLength = 20,
   fallSpeed = 20,
   jumpFrame = 1,
   terminalVel = 300,
   toggledFly = false;
+  renderdist = 2;
 var playerCanFly = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  for (i = 0; i < chunkWidth; i++) {
-    cubes[i] = [];
-    for (j = 0; j < chunkDepth; j++) {
-      cubes[i].push(new block(i, j));
+  for(var i=0;i<renderdist;i++){
+    chunks[i] = []
+    for(var j=0;j<renderdist;j++){
+      chunks[i].push(new Chunk(i,j))
     }
   }
   player = createRoverCam();
   player.usePointerLock();
-  player.setState({ speed: 5 });
+  player.setState({ speed: 1 });
   player.position.y =
-    cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].h - 100;
-  player.position.x = cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].pos.x;
-  player.position.z = cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].pos.z;
+    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
+  player.position.x =
+    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.x;
+  player.position.z =
+    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
 }
 
 function draw() {
   background("black");
   normalMaterial();
-  if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {
-    if (playerCanFly == false) {
-      playerCanFly = true;
-      playerTouching = false;
-      console.log("can fly");
-    } else {
-      playerCanFly = false;
-      console.log("cant fly");
-    }
-    toggledFly = true;
-  }
-  if (frameCount % 10 == 00) {
-    toggledFly = false;
-  }
-  if (!playerCanFly) {
-    if (!playerTouching) {
-      player.position.y += fallSpeed;
-      if (fallSpeed <= terminalVel && frameCount % 4 == 0) {
-        fallSpeed += 5;
-        console.log("falling...");
-      }
-      if (getPlayerTouchingGround()) {
-        fallSpeed = 20;
-      }
-    } else if (playerTouching) {
-      if (getPlayerTouchingGround()) {
-        playerTouching = true;
-        try {
-          player.position.y =
-            cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-              .h - 50;
-        } catch (error) {
-          playerTouching = false;
-        }
-      } else if (keyIsDown(32) && frameCount % jumpFrame === 0) {
-        player.position.y -= 20;
-        playerTouching = false;
-        fallSpeed = 1;
-        jumpFrame = 2;
-      } else {
-        try {
-          player.position.y =
-            cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-              .h - 50;
-        } catch (error) {
-          playerTouching = false;
-        }
-      }
-    }
-    if (getPlayerTouchingGround()) {
-      playerTouching = true;
-      fallSpeed = 10;
-      try {
-        player.position.y =
-          cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-            .h - 50;
-      } catch (error) {
-        playerTouching = false;
-      }
-    }
-  }
-  for (var i in cubes) {
-    for (var j in cubes[i]) {
-      cubes[i][j].render();
-      cubes[i][j].playerInteract();
-      cubes[i][j].update();
+  for(var i in chunks){
+    for(var j in chunks[i]){
+      chunks[i][j].render()
+      chunks[i][j].update()
     }
   }
 }

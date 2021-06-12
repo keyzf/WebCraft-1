@@ -12,12 +12,9 @@ class Chunk {
     console.log(cubes[1][1].pos)
     for (var i in cubes) {
       for (var j in cubes[i]) {
-        push();
-        translate(this.position.x,this,this.position.z)
         cubes[i][j].render();
         cubes[i][j].playerInteract();
         cubes[i][j].update();
-        pop();
       }
     }
   }

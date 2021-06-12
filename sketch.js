@@ -1,5 +1,3 @@
-//backup file,will be removed soon.
-
 var cubes = [];
 var player,
   playerTouching = false,

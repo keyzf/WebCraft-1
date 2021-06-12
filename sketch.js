@@ -18,6 +18,15 @@ function setup() {
 function draw() {
   background("black");
   if (gameState === "loading") {
+    text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
+    text.textFont('Source Code Pro');
+    text.textAlign(CENTER);
+    text.textSize(133);
+    text.fill('white');
+    text.noStroke();
+    text.text('loading...', width * 0.5, height * 0.5);
+    texture(text);
+    plane(windowWidth,windowHeight)
     cubes=[]
     playerTouching = false
     chunkWidth = 200
@@ -43,15 +52,6 @@ function draw() {
     player.position.z =
       cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
     gameState = "play";
-    text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
-    text.textFont('Source Code Pro');
-    text.textAlign(CENTER);
-    text.textSize(133);
-    text.fill('white');
-    text.noStroke();
-    text.text('loading...', width * 0.5, height * 0.5);
-    texture(text);
-    plane(windowWidth,windowHeight)
   } else if (gameState === "play") {
     if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {
       if (playerCanFly == false) {

@@ -18,6 +18,7 @@ class block {
     if (this.shown) {
       push();
       translate(this.pos.x * 10, this.h, this.pos.z * 10);
+      normalMaterial();
       box(10);
       pop();
     }

@@ -2,7 +2,7 @@ var cubes = [];
 var player,
   playerTouching = false,
   chunkWidth = 500,
-  chunkDepth = 500,
+  chunkLength = 500,
   fallSpeed = 20,
   jumpFrame = 1,
   terminalVel = 300,
@@ -13,7 +13,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   for (i = 0; i < chunkWidth; i++) {
     cubes[i] = [];
-    for (j = 0; j < chunkDepth; j++) {
+    for (j = 0; j < chunkLength; j++) {
       cubes[i].push(new block(i, j));
     }
   }
@@ -21,9 +21,9 @@ function setup() {
   player.usePointerLock();
   player.setState({ speed: 5 });
   player.position.y =
-    cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].h - 100;
-  player.position.x = cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].pos.x;
-  player.position.z = cubes[round(chunkWidth / 2)][round(chunkDepth / 2)].pos.z;
+    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
+  player.position.x = cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.x;
+  player.position.z = cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.z;
 }
 
 function draw() {

@@ -29,67 +29,6 @@ function setup() {
 function draw() {
   background("black");
   normalMaterial();
-  if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {
-    if (playerCanFly == false) {
-      playerCanFly = true;
-      playerTouching = false;
-      console.log("can fly");
-    } else {
-      playerCanFly = false;
-      console.log("cant fly");
-    }
-    toggledFly = true;
-  }
-  if (frameCount % 10 == 00) {
-    toggledFly = false;
-  }
-  if (!playerCanFly) {
-    if (!playerTouching) {
-      player.position.y += fallSpeed;
-      if (fallSpeed <= terminalVel && frameCount % 4 == 0) {
-        fallSpeed += 5;
-        console.log("falling...");
-      }
-      if (getPlayerTouchingGround()) {
-        fallSpeed = 20;
-      }
-    } else if (playerTouching) {
-      if (getPlayerTouchingGround()) {
-        playerTouching = true;
-        try {
-          player.position.y =
-            cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-              .h - 50;
-        } catch (error) {
-          playerTouching = false;
-        }
-      } else if (keyIsDown(32) && frameCount % jumpFrame === 0) {
-        player.position.y -= 20;
-        playerTouching = false;
-        fallSpeed = 1;
-        jumpFrame = 2;
-      } else {
-        try {
-          player.position.y =
-            cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-              .h - 50;
-        } catch (error) {
-          playerTouching = false;
-        }
-      }
-    }
-    if (getPlayerTouchingGround()) {
-      playerTouching = true;
-      fallSpeed = 10;
-      try {
-        player.position.y =
-          cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-            .h - 50;
-      } catch (error) {
-        playerTouching = false;
-      }
-    }
-  }
   for (var i in cubes) {
     for (var j in cubes[i]) {
       cubes[i][j].render();

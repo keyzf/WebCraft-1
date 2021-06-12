@@ -1,4 +1,4 @@
-class Chunk {
+class chunk {
   constructor(x, z) {
     this.cubes = [];
     this.position = { x: x + 1, z: z + 1 };

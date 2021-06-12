@@ -1,7 +1,7 @@
 class Chunk {
   constructor(x, z) {
     this.position = { x: x + 1, z: z + 1 };
-    for (var i = 0; i < chunkWidth; i++) {
+    for (var i = this.position.x; i < chunkWidth; i++) {
       cubes[i] = [];
       for (var j = 0; j < chunkLength; j++) {
         cubes[i].push(new block(i, j));

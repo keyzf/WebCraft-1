@@ -1,42 +1,74 @@
+//backup file,will be removed soon.
+
 var cubes = [];
-var chunks = [];
 var player,
   playerTouching = false,
-  chunkWidth = 20,
-  chunkLength = 20,
-  fallSpeed = 20,
-  jumpFrame = 1,
-  terminalVel = 300,
-  toggledFly = false;
-  renderdist = 2;
-var playerCanFly = false;
+  chunkWidth=60,
+  chunkDepth=60;
+fallSpeed = 20
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  for(var i=0;i<renderdist;i++){
-    chunks[i] = []
-    for(var j=0;j<renderdist;j++){
-      chunks[i].push(new Chunk(i,j))
+  for (i = 0; i < chunkWidth; i++) {
+    cubes[i] = [];
+    for (j = 0; j < chunkDepth; j++) {
+      cubes[i].push(new block(i, j));
     }
   }
   player = createRoverCam();
   player.usePointerLock();
-  player.setState({ speed: 3 });
-  player.position.y =
-    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
-  player.position.x =
-    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.x;
-  player.position.z =
-    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
+  player.setState({ speed: 5 });
+  player.position.y = cubes[round(chunkWidth/2)][round(chunkDepth/2)].h-100
+  player.position.x = cubes[round(chunkWidth/2)][round(chunkDepth/2)].pos.x
+  player.position.z = cubes[round(chunkWidth/2)][round(chunkDepth/2)].pos.z
 }
 
 function draw() {
   background("black");
   normalMaterial();
-  for(var i in chunks){
-    for(var j in chunks[i]){
-      chunks[i][j].render()
-      chunks[i][j].update()
+  if (!playerTouching) {
+    player.position.y += fallSpeed;
+  } else if (playerTouching) {
+    if (getPlayerTouchingGround()) {
+      playerTouching = true;
+      try {
+        player.position.y =
+          cubes[round(player.position.x / 10)][round(player.position.z / 10)]
+            .h - 50;
+      } catch (error) {
+        playerTouching = false;
+      }
+    }
+    else if(keyIsDown(32)){
+      player.position.y -= 10
+      playerTouching = false;
+    }
+    else{
+      try {
+        player.position.y =
+          cubes[round(player.position.x / 10)][round(player.position.z / 10)]
+            .h - 50;
+      } catch (error) {
+        playerTouching = false;
+      }
+    }
+  }
+  if (getPlayerTouchingGround()) {
+    playerTouching = true;
+    fallSpeed = 10
+    try {
+      player.position.y =
+        cubes[round(player.position.x / 10)][round(player.position.z / 10)].h -
+        50;
+    } catch (error) {
+      playerTouching = false;
+    }
+  }
+  for (var i in cubes) {
+    for (var j in cubes[i]) {
+      cubes[i][j].render();
+      cubes[i][j].playerInteract();
+      cubes[i][j].update();
     }
   }
 }
@@ -55,15 +87,4 @@ function getPlayerTouchingGround() {
   } catch (error) {
     return false;
   }
-}
-
-function distanceTo(one, two) {
-  var x1 = one[0];
-  var x2 = two[0];
-  var y1 = one[1];
-  var y2 = two[1];
-  var z1 = one[2];
-  var z2 = two[2];
-
-  return ((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2) ** (1 / 2);
 }

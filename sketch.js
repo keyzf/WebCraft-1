@@ -8,40 +8,35 @@ var player,
   jumpFrame = 1,
   terminalVel = 300,
   toggledFly = false;
-renderdist = 2;
+  renderdist = 2;
 var playerCanFly = false;
-var gameState = "loading";
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  for(var i=0;i<renderdist;i++){
+    chunks[i] = []
+    for(var j=0;j<renderdist;j++){
+      chunks[i].push(new Chunk(i,j))
+    }
+  }
+  player = createRoverCam();
+  player.usePointerLock();
+  player.setState({ speed: 3 });
+  player.position.y =
+    cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
+  player.position.x =
+    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.x;
+  player.position.z =
+    cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
 }
 
 function draw() {
   background("black");
   normalMaterial();
-  if (gameState === "loading") {
-    for (var i = 0; i < renderdist; i++) {
-      chunks[i] = [];
-      for (var j = 0; j < renderdist; j++) {
-        chunks[i].push(new Chunk(i, j));
-      }
-    }
-    player = createRoverCam();
-    player.usePointerLock();
-    player.setState({ speed: 3 });
-    player.position.y =
-      cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
-    player.position.x =
-      cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.x;
-    player.position.z =
-      cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
-    gameState = "playing";
-  } else if (gameState === "playing") {
-    for (var i in chunks) {
-      for (var j in chunks[i]) {
-        chunks[i][j].render();
-        chunks[i][j].update();
-      }
+  for(var i in chunks){
+    for(var j in chunks[i]){
+      chunks[i][j].render()
+      chunks[i][j].update()
     }
   }
 }

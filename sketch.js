@@ -129,6 +129,7 @@ function draw() {
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+//EOF
 
 function getPlayerTouchingGround() {
   try {

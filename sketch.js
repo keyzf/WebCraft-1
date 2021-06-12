@@ -46,12 +46,12 @@ function draw() {
   if (!playerCanFly) {
     if (!playerTouching) {
       player.position.y += fallSpeed;
-      if (fallSpeed <= terminalVel&&frameCount%4==0) {
+      if (fallSpeed <= terminalVel && frameCount % 4 == 0) {
         fallSpeed += 5;
-        console.log('falling...')
+        console.log("falling...");
       }
-      if(getPlayerTouchingGround()){
-        fallSpeed = 20
+      if (getPlayerTouchingGround()) {
+        fallSpeed = 20;
       }
     } else if (playerTouching) {
       if (getPlayerTouchingGround()) {

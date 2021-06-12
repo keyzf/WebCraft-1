@@ -1,12 +1,12 @@
 class Chunk {
-  constructor() {
+  constructor(x,z) {
+    this.position = {x:x,z:z}
     for (i = 0; i < chunkWidth; i++) {
       cubes[i] = [];
       for (j = 0; j < chunkDepth; j++) {
-        cubes[i].push(new block(i, j));
+        cubes[i].push(new block(i,j));
       }
     }
-
   }
   render() {
     for (var i in cubes) {

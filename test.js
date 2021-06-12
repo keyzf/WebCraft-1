@@ -1,3 +1,5 @@
+//only a test file, will be removed soon.
+
 var cubes = [];
 
 function setup() {

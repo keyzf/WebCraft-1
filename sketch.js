@@ -55,7 +55,7 @@ function draw() {
     c = new Chunk(0, 0);
     c1 = new Chunk(1, 1);
     c2 = new Chunk(0, 1);
-    c3 = new Chunk(0, 1);
+    c3 = new Chunk(1, 0);
   } else if (gameState === "play") {
     //console.log(player.position)
     if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {

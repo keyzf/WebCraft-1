@@ -1,22 +1,31 @@
 class Chunk {
   constructor(x, z) {
-    this.position = { x: x + 1, z: z + 1 };
-    for (var i = this.position.x; i < chunkWidth; i++) {
+    this.position = { x: x*16, z: z*16 };
+    //console.log(this.position.x)
+    this.cubes = []
+    for (var i = 0; i < 16; i++) {
       cubes[i] = [];
-      for (var j = 0; j < chunkLength; j++) {
-        cubes[i].push(new block(i, j));
+      this.cubes[i] = [];
+      this.cubes[i] = [];
+      for (var j = 0; j < 16; j++) {
+        cubes[i].push(new block(i+this.position.x, j+this.position.z));
+        this.cubes[i].push(new block(i+this.position.x, j+this.position.z));
       }
     }
   }
   render() {
-    console.log(cubes[1][1].pos)
-    for (var i in cubes) {
-      for (var j in cubes[i]) {
-        cubes[i][j].render();
-        cubes[i][j].playerInteract();
-        cubes[i][j].update();
+    //push()
+    //translate(this.position.x*chunkWidth,0,this.position.z*chunkDepth)
+    //sfdfg
+    for (var i in this.cubes) {
+      for (var j in this.cubes[i]) {
+        this.cubes[i][j].render();
+        this.cubes[i][j].playerInteract();
+        this.cubes[i][j].update();
       }
     }
+    //console.log('using chunkz')
+    //pop()
   }
   update() {
     if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {

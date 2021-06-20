@@ -1,6 +1,8 @@
 class block {
   constructor(x, z) {
     this.pos = { x: x, z: z };
+    //console.log(this.pos)
+    this.dimensions = createVector(10,10,10);
     var i = x;
     var j = z;
     this.h =
@@ -12,6 +14,7 @@ class block {
           noise(i / 2000, j / 2000) * 500 +
           noise(i / 10000, j / 10000) * 500 
       ) * 10;
+    this.position = createVector(x/10,this.h,z/10)
     this.shown = true;
   }
   render() {
@@ -24,7 +27,7 @@ class block {
     }
   }
   update() {
-    this.showhide()
+    //this.showhide()
   }
   showhide(){
     if (
@@ -41,5 +44,6 @@ class block {
         this.shown = true;
       }
   }
-  playerInteract() {}
+  playerInteract() {
+  }
 }

@@ -12,31 +12,30 @@ var gameState = "loading";
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  console.log('loading...')
+  console.log("loading...");
 }
 
 function draw() {
   background("black");
   if (gameState === "loading") {
     text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
-    text.textFont('Source Code Pro');
+    text.textFont("Source Code Pro");
     text.textAlign(CENTER);
     text.textSize(133);
-    text.fill('white');
+    text.fill("white");
     text.noStroke();
-    text.text('loading...', width * 0.5, height * 0.5);
+    text.text("loading...", width * 0.5, height * 0.5);
     texture(text);
-    plane(windowWidth,windowHeight)
-    cubes=[]
-    playerTouching = false
-    chunkWidth = 200
-    chunkLength = 200
-    fallSpeed = 20
-    jumpFrame = 1
-    terminalVel = 300
-    toggledFly = false
-    playerCanFly = false
+    plane(windowWidth, windowHeight);
+    cubes = [];
+    playerTouching = false;
+    chunkWidth = 16;
+    chunkLength = 16;
+    fallSpeed = 20;
+    jumpFrame = 1;
+    terminalVel = 300;
+    toggledFly = false;
+    playerCanFly = false;
     for (i = 0; i < chunkWidth; i++) {
       cubes[i] = [];
       for (j = 0; j < chunkLength; j++) {
@@ -45,15 +44,20 @@ function draw() {
     }
     player = createRoverCam();
     player.usePointerLock();
-    player.setState({ speed: 3 });
+    player.setState({ speed: 5 });
     player.position.y =
       cubes[round(chunkWidth / 2)][round(chunkLength / 2)].h - 100;
     player.position.x =
-      cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.x;
+      cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.x;
     player.position.z =
-      cubes[round(chunkLength / 2)][round(chunkLength / 2)].pos.z;
+      cubes[round(chunkWidth / 2)][round(chunkLength / 2)].pos.z;
     gameState = "play";
+    c = new Chunk(0, 0);
+    c1 = new Chunk(1, 1);
+    c2 = new Chunk(0, 1);
+    c3 = new Chunk(0, 1);
   } else if (gameState === "play") {
+    //console.log(player.position)
     if (keyIsDown(13) && frameCount % 3 === 0 && !toggledFly) {
       if (playerCanFly == false) {
         playerCanFly = true;
@@ -65,71 +69,17 @@ function draw() {
       }
       toggledFly = true;
     }
-    if (frameCount % 10 == 0) {
-      toggledFly = false;
-    }
-    if (!playerCanFly) {
-      if (!playerTouching) {
-        player.position.y += fallSpeed;
-        if (fallSpeed <= terminalVel && frameCount % 4 == 0) {
-          fallSpeed += 5;
-          //console.log("falling...");
-        }
-        if (getPlayerTouchingGround()) {
-          fallSpeed = 20;
-        }
-      } else if (playerTouching) {
-        if (getPlayerTouchingGround()) {
-          playerTouching = true;
-          try {
-            player.position.y =
-              cubes[round(player.position.x / 10)][
-                round(player.position.z / 10)
-              ].h - 50;
-          } catch (error) {
-            playerTouching = false;
-          }
-        } else if (keyIsDown(32) && frameCount % jumpFrame === 0) {
-          player.position.y -= 20;
-          playerTouching = false;
-          fallSpeed = 1;
-          jumpFrame = 2;
-        }
-        else if(keyDown(224)){
-          player.setState({speed:5})
-        }
-        else if(!keyDown(224)){
-          player.setState({speed:3})
-        } else {
-          try {
-            player.position.y =
-              cubes[round(player.position.x / 10)][
-                round(player.position.z / 10)
-              ].h - 50;
-          } catch (error) {
-            playerTouching = false;
-          }
-        }
-      }
-      if (getPlayerTouchingGround()) {
-        playerTouching = true;
-        fallSpeed = 10;
-        try {
-          player.position.y =
-            cubes[round(player.position.x / 10)][round(player.position.z / 10)]
-              .h - 50;
-        } catch (error) {
-          playerTouching = false;
-        }
-      }
-    }
-    for (var i in cubes) {
+    c.render();
+    c1.render();
+    c2.render();
+    c3.render();
+    /*for (var i in cubes) {
       for (var j in cubes[i]) {
         cubes[i][j].render();
         cubes[i][j].playerInteract();
         cubes[i][j].update();
       }
-    }
+    }*/
   }
 }
 

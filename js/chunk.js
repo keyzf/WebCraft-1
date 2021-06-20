@@ -16,7 +16,6 @@ class Chunk {
   render() {
     //push()
     //translate(this.position.x*chunkWidth,0,this.position.z*chunkDepth)
-    //sfdfg
     for (var i in this.cubes) {
       for (var j in this.cubes[i]) {
         this.cubes[i][j].render();

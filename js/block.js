@@ -27,7 +27,7 @@ class block {
     }
   }
   update() {
-    //this.showhide()
+    this.showhide()
   }
   showhide(){
     if (

@@ -18,7 +18,4 @@ Made with [contributors-img](https://contrib.rocks).
 
 <hr>
 
-## contributing:
-1. fork this repository.
-2. code.
-3. create a pull request.
+## [Contributing](https://github.com/somePythonProgrammer/WebCraft/blob/main/CONTRIBUTING.md)

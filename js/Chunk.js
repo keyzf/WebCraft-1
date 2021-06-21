@@ -4,10 +4,8 @@ class Chunk {
     //console.log(this.position.x)
     this.cubes = []
     for (var i = 0; i < 16; i++) {
-      cubes[i] = [];
       this.cubes[i] = [];
       for (var j = 0; j < 16; j++) {
-        cubes[i].push(new Block(i+this.position.x, j+this.position.z));
         this.cubes[i].push(new Block(i+this.position.x, j+this.position.z));
       }
     }

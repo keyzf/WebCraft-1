@@ -7,8 +7,8 @@ class Chunk {
       cubes[i] = [];
       this.cubes[i] = [];
       for (var j = 0; j < 16; j++) {
-        cubes[i].push(new block(i+this.position.x, j+this.position.z));
-        this.cubes[i].push(new block(i+this.position.x, j+this.position.z));
+        cubes[i].push(new Block(i+this.position.x, j+this.position.z));
+        this.cubes[i].push(new Block(i+this.position.x, j+this.position.z));
       }
     }
   }

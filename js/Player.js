@@ -1,4 +1,4 @@
-class Player extends RoverCam {
+class Player extends RoverCam { 
   constructor() {
     super();
     this.dimensions = createVector(1, 3, 1); // min elevation = 0.2

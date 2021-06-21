@@ -1,4 +1,4 @@
-class block {
+class Block {
   constructor(x, z) {
     this.pos = { x: x, z: z };
     //console.log(this.pos)

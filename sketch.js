@@ -39,7 +39,7 @@ function draw() {
     for (i = 0; i < chunkWidth; i++) {
       cubes[i] = [];
       for (j = 0; j < chunkLength; j++) {
-        cubes[i].push(new block(i, j));
+        cubes[i].push(new Block(i, j));
       }
     }
     player = createRoverCam();

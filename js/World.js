@@ -32,9 +32,9 @@ class World {
       player.usePointerLock()
       player.setState({ speed: 5 });
       if (!this.playerSpawned) {
-        player.position.y = this.chunks[3][3].cubes[8][8].h - 100;
-        player.position.x = this.chunks[3][3].cubes[8][8].pos.x;
-        player.position.z = this.chunks[3][3].cubes[8][8].pos.z;
+        player.position.y = this.chunks[2][2].cubes[8][8].h - 100;
+        player.position.x = this.chunks[2][2].cubes[8][8].pos.x;
+        player.position.z = this.chunks[2][2].cubes[8][8].pos.z;
         this.playerSpawned = true;
       }
       this.gameState = "play";

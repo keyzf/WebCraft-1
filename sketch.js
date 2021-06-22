@@ -17,7 +17,10 @@ function draw() {
     text.text("loading...", width * 0.5, height * 0.5);
     texture(text);
     plane(windowWidth, windowHeight);
+    w.generate()
+    w.gameState = 'play'
   }
+  //console.log(w.gameState)
   w.play();
 }
 

@@ -2,7 +2,7 @@ class Block {
   constructor(x, z) {
     this.pos = { x: x, z: z };
     //console.log(this.pos)
-    this.dimensions = createVector(10,10,10);
+    this.dimensions = createVector(10, 10, 10);
     var i = x;
     var j = z;
     this.h =
@@ -12,9 +12,9 @@ class Block {
           noise(i / 550, j / 550) * 100 +
           noise(i / 800, j / 800) * 200 +
           noise(i / 2000, j / 2000) * 500 +
-          noise(i / 10000, j / 10000) * 500 
+          noise(i / 10000, j / 10000) * 500
       ) * 10;
-    this.position = createVector(x/10,this.h,z/10)
+    this.position = createVector(x / 10, this.h, z / 10);
     this.shown = true;
   }
   render() {
@@ -27,23 +27,27 @@ class Block {
     }
   }
   update() {
-    this.showhide()
+    this.showhide();
   }
-  showhide(){
+  showhide() {
     if (
-        player.position.z / 10 > this.pos.z + 20 ||
-        player.position.z / 10 < this.pos.z - 20 
-      ) {
-        this.shown = false;
-      }
-      else if(player.position.x / 10 > this.pos.x + 20 ||
-        player.position.x / 10 < this.pos.x - 20){
-          this.shown = false
-      }
-      else {
-        this.shown = true;
-      }
+      player.position.z / 10 > this.pos.z + 20 ||
+      player.position.z / 10 < this.pos.z - 20
+    ) {
+      this.shown = false;
+    } else if (
+      player.position.x / 10 > this.pos.x + 20 ||
+      player.position.x / 10 < this.pos.x - 20
+    ) {
+      this.shown = false;
+    } else if (
+      player.position.y / 10 > this.pos.y + 20 ||
+      player.position.y / 10 < this.pos.y - 20
+    ) {
+      this.shown = false;
+    } else {
+      this.shown = true;
+    }
   }
-  playerInteract() {
-  }
+  playerInteract() {}
 }

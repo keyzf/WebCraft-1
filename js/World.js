@@ -8,6 +8,9 @@ class World {
     this.toggledFly = "";
     this.playerCanFly = "";
     this.gameState = "loading";
+    this.chunks = [];
+    this.playerSpawned = false;
+    this.generate();
   }
   generate() {
     background("black");
@@ -18,28 +21,33 @@ class World {
       this.terminalVel = 300;
       this.toggledFly = false;
       this.playerCanFly = false;
+      for (var i = 0; i < 5; i++) {
+        this.chunks[i] = [];
+        for (var j = 0; j < 5; j++) {
+          this.chunks[i][j] = new Chunk(i, j);
+        }
+      }
+      //console.log(this.chunks);
       player = createRoverCam();
-      player.usePointerLock();
+      player.usePointerLock()
       player.setState({ speed: 5 });
+      if (!this.playerSpawned) {
+        player.position.y = this.chunks[3][3].cubes[8][8].h - 100;
+        player.position.x = this.chunks[3][3].cubes[8][8].pos.x;
+        player.position.z = this.chunks[3][3].cubes[8][8].pos.z;
+        this.playerSpawned = true;
+      }
       this.gameState = "play";
-      this.c = new Chunk(0, 0);
-      this.c1 = new Chunk(1, 1);
-      this.c2 = new Chunk(0, 1);
-      this.c3 = new Chunk(1, 0);
-      player.setState({ speed: 5 });
-      player.position.y = this.c.cubes[1][1].h - 100;
-      player.position.x = this.c.cubes[1][1].pos.x;
-      player.position.z = this.c.cubes[1][1].pos.z;
     }
   }
   play() {
     background("black");
-    this.generate();
     if (this.gameState === "play") {
-      this.c.render();
-      this.c1.render();
-      this.c2.render();
-      this.c3.render();
+      for (var i in this.chunks) {
+        for (var j in this.chunks[i]) {
+          this.chunks[i][j].render();
+        }
+      }
     }
   }
 }

@@ -9,8 +9,8 @@ class Block {
       round(
         noise(i / 20, j / 20) * 2 +
           noise(i / 350, j / 350) * 50 +
-          noise(i / 500, j / 500) * 100 +
-          noise(i / 750, j / 750) * 200 +
+          noise(i / 550, j / 550) * 100 +
+          noise(i / 800, j / 800) * 200 +
           noise(i / 2000, j / 2000) * 500 +
           noise(i / 10000, j / 10000) * 500 
       ) * 10;

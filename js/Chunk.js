@@ -14,7 +14,6 @@ class Chunk {
     for (var i in this.cubes) {
       for (var j in this.cubes[i]) {
         this.cubes[i][j].render();
-        this.cubes[i][j].playerInteract();
         this.cubes[i][j].update();
       }
     }

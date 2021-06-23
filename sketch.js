@@ -1,5 +1,30 @@
 var player,world,renderDistance=5;
 
+window.onbeforeunload = function (e) {
+    // Cancel the event
+    e.preventDefault();
+
+    // Chrome requires returnValue to be set
+    e.returnValue = 'Really want to quit the game?';
+};
+
+//Prevent Ctrl+S (and Ctrl+W for old browsers and Edge)
+document.onkeydown = function (e) {
+    e = e || window.event;//Get event
+
+    if (!e.ctrlKey) return;
+
+    var code = e.which || e.keyCode;//Get key code
+
+    switch (code) {
+        case 83:
+        case 87:
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+    }
+};
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");

@@ -1,5 +1,5 @@
 class Block {
-  constructor(x, z) {
+  constructor(x, z,parent) {
     this.pos = { x: x, z: z };
     //console.log(this.pos)
     this.dimensions = createVector(10, 10, 10);
@@ -16,6 +16,8 @@ class Block {
       ) * 10;
     this.position = createVector(x / 10, this.h, z / 10);
     this.shown = true;
+    this.current = false
+    this.parent = parent
   }
   render() {
     if (this.shown) {
@@ -28,6 +30,7 @@ class Block {
   }
   update() {
     this.showhide();
+    this.playerInteract()
   }
   showhide() {
     if (
@@ -49,5 +52,13 @@ class Block {
       this.shown = true;
     }
   }
-  playerInteract() {}
+  playerInteract() {
+    if(round(player.position.x / 10)===this.pos.x&&round(player.position.z / 10)===this.pos.z){
+      this.parent.currChunk = true
+      console.log([this.parent.position.x/16,this.parent.position.z/16])
+    }
+    else{
+      this.parent.currChunk = false
+    }
+  }
 }

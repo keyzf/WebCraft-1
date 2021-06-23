@@ -20,8 +20,8 @@ function draw() {
     w.generate()
     w.gameState = 'play'
   }
-  //console.log(w.gameState)
-  w.play();
+  //console.log(round(player.position.y / 10))
+  w.play()
 }
 
 function windowResized() {

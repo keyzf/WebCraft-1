@@ -23,19 +23,5 @@ class Chunk {
     this.update();
   }
   update() {
-    let found=false;
-    for (var i in this.cubes) {
-      for (var j in this.cubes[i]) {
-        if(this.cubes[i][j].current === true){found = true}
-        break;
-      }
-    }
-    if(found){
-      this.currChunk = true
-      //console.log([this.position.x/16,this.position.z/16])
-    }
-    else{
-      this.currChunk = false
-    }
   }
 }

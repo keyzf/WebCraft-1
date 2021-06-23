@@ -1,13 +1,13 @@
-var player;
+var player,world;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");
-  w = new World();
+  world = new World();
 }
 
 function draw() {
-  if (w.gameState === "loading") {
+  if (world.gameState === "loading") {
     text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
     text.textFont("Source Code Pro");
     text.textAlign(CENTER);
@@ -17,11 +17,11 @@ function draw() {
     text.text("loading...", width * 0.5, height * 0.5);
     texture(text);
     plane(windowWidth, windowHeight);
-    w.generate()
-    w.gameState = 'play'
+    world.generate()
+    world.gameState = 'play'
   }
-  //console.log(round(player.position.y / 10))
-  w.play()
+  world.update()
+  world.play()
 }
 
 function windowResized() {

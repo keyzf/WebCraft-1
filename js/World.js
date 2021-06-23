@@ -10,7 +10,7 @@ class World {
     this.gameState = "loading";
     this.chunks = [];
     this.playerSpawned = false;
-    this.midChunk = ''
+    this.midChunk = "";
   }
   generate() {
     background("black");
@@ -24,17 +24,17 @@ class World {
       for (var i = 0; i < 5; i++) {
         this.chunks[i] = [];
         for (var j = 0; j < 5; j++) {
-          this.chunks[i][j] = new Chunk(i, j,this);
+          this.chunks[i][j] = new Chunk(i, j, this);
         }
       }
       //console.log(this.chunks);
       player = createRoverCam();
-      player.usePointerLock()
+      player.usePointerLock();
       player.setState({ speed: 5 });
       if (!this.playerSpawned) {
         player.position.y = this.chunks[2][2].cubes[8][8].h - 100;
-        player.position.x = this.chunks[2][2].cubes[0].length*16*2
-        player.position.z = this.chunks[2][2].cubes[0].length*16*2
+        player.position.x = this.chunks[2][2].cubes[0].length * 16 * 2;
+        player.position.z = this.chunks[2][2].cubes[0].length * 16 * 2;
         this.playerSpawned = true;
       }
       this.gameState = "play";
@@ -43,6 +43,7 @@ class World {
   play() {
     background("black");
     if (this.gameState === "play") {
+      this.update()
       for (var i in this.chunks) {
         for (var j in this.chunks[i]) {
           this.chunks[i][j].render();
@@ -50,4 +51,5 @@ class World {
       }
     }
   }
+  update() {}
 }

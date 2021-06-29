@@ -7,11 +7,13 @@ class Chunk {
     for (var i = 0; i < 16; i++) {
       this.cubes[i] = [];
       for (var j = 0; j < 16; j++) {
-        this.cubes[i].push(new Block(i + this.position.x, j + this.position.z,this));
+        this.cubes[i].push(
+          new Block(i + this.position.x, j + this.position.z, this)
+        );
       }
     }
-    this.shown = false
-    this.currChunk = false
+    this.shown = false;
+    this.currChunk = false;
   }
   render() {
     for (var i in this.cubes) {
@@ -23,5 +25,16 @@ class Chunk {
     this.update();
   }
   update() {
+  }
+  refresh_() {
+    this.cubes = [];
+    for (var i = 0; i < 16; i++) {
+      this.cubes[i] = [];
+      for (var j = 0; j < 16; j++) {
+        this.cubes[i].push(
+          new Block(i + this.position.x, j + this.position.z, this)
+        );
+      }
+    }
   }
 }

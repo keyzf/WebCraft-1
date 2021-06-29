@@ -29,7 +29,7 @@ class Block {
     }
   }
   update() {
-    this.showhide();
+    //this.showhide();
     this.playerInteract()
   }
   showhide() {

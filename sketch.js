@@ -1,6 +1,10 @@
-var player,world,renderDistance=5;
+var player,
+  world,
+  renderDistance = 3,
+  gameState = "loading",
+  text;
 
-window.onbeforeunload = function (e) {
+/*window.onbeforeunload = function (e) {
     // Cancel the event
     e.preventDefault();
 
@@ -23,30 +27,30 @@ document.onkeydown = function (e) {
             e.stopPropagation();
             break;
     }
-};
+};*/
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");
-  world = new World();
+  world = new World()
 }
 
 function draw() {
-  if (world.gameState === "loading") {
-    ltext = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
-    ltext.textFont("Source Code Pro");
-    ltext.textAlign(CENTER);
-    ltext.textSize(133);
-    ltext.fill("white");
-    ltext.noStroke();
-    ltext.text("loading...", width * 0.5, height * 0.5);
-    texture(ltext);
+  if (gameState === "loading") {
+    world.generate();
+    text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
+    text.textFont("Source Code Pro");
+    text.textAlign(CENTER);
+    text.textSize(133);
+    text.fill("white");
+    text.noStroke();
+    text.text("loading...", width * 0.5, height * 0.5);
+    texture(text);
     plane(windowWidth, windowHeight);
-    world.generate()
-    world.gameState = 'play'
+    gameState = "play";
+  } else {
+    world.play()
   }
-  world.update()
-  world.play()
 }
 
 function windowResized() {

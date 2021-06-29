@@ -7,12 +7,12 @@ class Block {
     var j = z;
     this.h =
       round(
-        noise(i / 20, j / 20) * 2 +
-          noise(i / 350, j / 350) * 50 +
-          noise(i / 550, j / 550) * 100 +
-          noise(i / 800, j / 800) * 200 +
-          noise(i / 2000, j / 2000) * 500 +
-          noise(i / 10000, j / 10000) * 500
+        simplex.noise2D(i / 20, j / 20) * 1 +
+        simplex.noise2D(i / 350, j / 350) * 2 +
+        simplex.noise2D(i / 550, j / 550) * 5 +
+        simplex.noise2D(i / 800, j / 800) * 10 +
+        simplex.noise2D(i / 2000, j / 2000) * 100 +
+        simplex.noise2D(i / 10000, j / 10000) * 500
       ) * 10;
     this.position = createVector(x / 10, this.h, z / 10);
     this.shown = true;

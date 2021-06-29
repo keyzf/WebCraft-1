@@ -20,11 +20,12 @@ class World {
       this.terminalVel = 300;
       this.toggledFly = false;
       this.playerCanFly = false;
-      for (var i = 0; i < renderDistance; i++) {
-        this.chunks[i] = [];
-        for (var j = 0; j < renderDistance; j++) {
-          this.chunks[i][j] = new Chunk(i, j, this);
+      for (var i = -renderDistance; i < renderDistance; i++) {
+        var arr = [];
+        for (var j = -renderDistance; j < renderDistance; j++) {
+          arr.push(new Chunk(i, j, this))
         }
+        this.chunks.push(arr)
       }
       //console.log(this.chunks);
       player = createRoverCam();

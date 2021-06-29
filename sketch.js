@@ -1,8 +1,9 @@
 var player,
   world,
-  renderDistance = 3,
+  renderDistance = 2,
   gameState = "loading",
-  text;
+  text,
+  simplex = new SimplexNoise('12047073465');
 
 /*window.onbeforeunload = function (e) {
     // Cancel the event
@@ -32,7 +33,7 @@ document.onkeydown = function (e) {
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");
-  world = new World()
+  world = new World();
 }
 
 function draw() {
@@ -49,7 +50,7 @@ function draw() {
     plane(windowWidth, windowHeight);
     gameState = "play";
   } else {
-    world.play()
+    world.play();
   }
 }
 

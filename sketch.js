@@ -5,6 +5,7 @@ var player,
   text,
   simplex = new SimplexNoise('12047073465');
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");

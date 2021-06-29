@@ -44,7 +44,6 @@ class World {
       this.update()
       for (var i in this.chunks) {
         for (var j in this.chunks[i]) {
-          ambientLight(255, 255, 153);
           //shader(this.shader)
           this.chunks[i][j].render();
         }

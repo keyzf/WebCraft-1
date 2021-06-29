@@ -2,9 +2,8 @@ var player,
   world,
   renderDistance = 2,
   gameState = "loading",
-  text,
-  simplex = new SimplexNoise('12047073465');
-
+  ltext,
+  simplex = new SimplexNoise("12047073465");
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -15,14 +14,14 @@ function setup() {
 function draw() {
   if (gameState === "loading") {
     world.generate();
-    text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
-    text.textFont("Source Code Pro");
-    text.textAlign(CENTER);
-    text.textSize(133);
-    text.fill("white");
-    text.noStroke();
-    text.text("loading...", width * 0.5, height * 0.5);
-    texture(text);
+    ltext = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
+    ltext.textFont("Arial");
+    ltext.textAlign(CENTER);
+    ltext.textSize(133);
+    ltext.fill("white");
+    ltext.noStroke();
+    ltext.text("loading...", width * 0.5, height * 0.5);
+    texture(ltext);
     plane(windowWidth, windowHeight);
     gameState = "play";
   } else {

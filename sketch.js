@@ -3,12 +3,14 @@ var player,
   renderDistance = 2,
   gameState = "loading",
   ltext,
-  simplex = new SimplexNoise("12047073465");
+  simplex;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   console.log("loading...");
   world = new World();
+  let seed = simplex = Math.round(random(-999999,999999))
+  simplex = new SimplexNoise(seed)
 }
 
 function draw() {

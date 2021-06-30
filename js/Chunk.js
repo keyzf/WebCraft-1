@@ -36,6 +36,36 @@ class Chunk {
     } else if (world.currPlayerChunk.z - this.position.z < -renderDistance) {
       this.position.z = world.currPlayerChunk.z - renderDistance + 1;
       this.refresh_();
+    } else if (
+      world.currPlayerChunk.z - this.position.z < -renderDistance &&
+      world.currPlayerChunk.x - this.position.x > renderDistance
+    ) {
+      this.position.z = world.currPlayerChunk.z - renderDistance + 1;
+      this.position.x = world.currPlayerChunk.x + renderDistance - 1;
+      this.refresh_();
+    } else if (
+      world.currPlayerChunk.z - this.position.z > renderDistance &&
+      world.currPlayerChunk.x - this.position.x > renderDistance
+    ) {
+      this.position.z = world.currPlayerChunk.z + renderDistance - 1;
+      this.position.x = world.currPlayerChunk.x + renderDistance - 1;
+      this.refresh_();
+    }
+    //sep
+    else if (
+      world.currPlayerChunk.z - this.position.z < -renderDistance &&
+      world.currPlayerChunk.x - this.position.x < -renderDistance
+    ) {
+      this.position.z = world.currPlayerChunk.z - renderDistance + 1;
+      this.position.x = world.currPlayerChunk.x - renderDistance + 1;
+      this.refresh_();
+    } else if (
+      world.currPlayerChunk.z - this.position.z > renderDistance &&
+      world.currPlayerChunk.x - this.position.x < -renderDistance
+    ) {
+      this.position.z = world.currPlayerChunk.z + renderDistance - 1;
+      this.position.x = world.currPlayerChunk.x - renderDistance + 1;
+      this.refresh_();
     }
   }
   refresh_() {

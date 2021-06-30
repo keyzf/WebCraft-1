@@ -9,7 +9,7 @@ class World {
     this.playerCanFly = "";
     this.chunks = [];
     this.playerSpawned = false;
-    this.midChunk = "";
+    this.currPlayerChunk = "";
     this.shader = ''
   }
   generate() {
@@ -28,8 +28,7 @@ class World {
         this.chunks.push(arr)
       }
       //console.log(this.chunks);
-      player = createRoverCam();
-      player.usePointerLock();
+      player = new Player();
       player.setState({ speed: 5 });
       if (!this.playerSpawned) {
         player.position.y = this.chunks[round(renderDistance/2)][round(renderDistance/2)].cubes[8][8].h - 100;

@@ -55,7 +55,7 @@ class Block {
   playerInteract() {
     if(round(player.position.x / 10)===this.pos.x&&round(player.position.z / 10)===this.pos.z){
       this.current= true
-      world.midChunk = {x:this.parent.position.x/16,z:this.parent.position.z/16}
+      world.currPlayerChunk = {x:this.parent.position.x,z:this.parent.position.z}
       //console.log(world.midChunk)
     }
     else{

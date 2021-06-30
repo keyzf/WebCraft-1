@@ -51,7 +51,6 @@ class Chunk {
       this.position.x = world.currPlayerChunk.x + renderDistance - 1;
       this.refresh_();
     }
-    //sep
     else if (
       world.currPlayerChunk.z - this.position.z < -renderDistance &&
       world.currPlayerChunk.x - this.position.x < -renderDistance

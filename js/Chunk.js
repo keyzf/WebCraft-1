@@ -24,43 +24,48 @@ class Chunk {
     this.update();
   }
   update() {
-    if (world.currPlayerChunk.x - this.position.x > renderDistance) {
+    if (world.currPlayerChunk.x - this.position.x > renderDistance - 1) {
       this.position.x = world.currPlayerChunk.x + renderDistance - 1;
       this.refresh_();
-    } else if (world.currPlayerChunk.x - this.position.x < -renderDistance) {
+    } else if (
+      world.currPlayerChunk.x - this.position.x <
+      -renderDistance + 1
+    ) {
       this.position.x = world.currPlayerChunk.x - renderDistance + 1;
       this.refresh_();
-    } else if (world.currPlayerChunk.z - this.position.z > renderDistance) {
+    } else if (world.currPlayerChunk.z - this.position.z > renderDistance - 1) {
       this.position.z = world.currPlayerChunk.z + renderDistance - 1;
       this.refresh_();
-    } else if (world.currPlayerChunk.z - this.position.z < -renderDistance) {
+    } else if (
+      world.currPlayerChunk.z - this.position.z <
+      -renderDistance + 1
+    ) {
       this.position.z = world.currPlayerChunk.z - renderDistance + 1;
       this.refresh_();
     } else if (
-      world.currPlayerChunk.z - this.position.z < -renderDistance &&
-      world.currPlayerChunk.x - this.position.x > renderDistance
+      world.currPlayerChunk.z - this.position.z < -renderDistance + 1 &&
+      world.currPlayerChunk.x - this.position.x > renderDistance - 1
     ) {
       this.position.z = world.currPlayerChunk.z - renderDistance + 1;
       this.position.x = world.currPlayerChunk.x + renderDistance - 1;
       this.refresh_();
     } else if (
-      world.currPlayerChunk.z - this.position.z > renderDistance &&
-      world.currPlayerChunk.x - this.position.x > renderDistance
+      world.currPlayerChunk.z - this.position.z > renderDistance - 1 &&
+      world.currPlayerChunk.x - this.position.x > renderDistance - 1
     ) {
       this.position.z = world.currPlayerChunk.z + renderDistance - 1;
       this.position.x = world.currPlayerChunk.x + renderDistance - 1;
       this.refresh_();
-    }
-    else if (
-      world.currPlayerChunk.z - this.position.z < -renderDistance &&
-      world.currPlayerChunk.x - this.position.x < -renderDistance
+    } else if (
+      world.currPlayerChunk.z - this.position.z < -renderDistance + 1 &&
+      world.currPlayerChunk.x - this.position.x < -renderDistance + 1
     ) {
       this.position.z = world.currPlayerChunk.z - renderDistance + 1;
       this.position.x = world.currPlayerChunk.x - renderDistance + 1;
       this.refresh_();
     } else if (
-      world.currPlayerChunk.z - this.position.z > renderDistance &&
-      world.currPlayerChunk.x - this.position.x < -renderDistance
+      world.currPlayerChunk.z - this.position.z > renderDistance - 1 &&
+      world.currPlayerChunk.x - this.position.x < -renderDistance + 1
     ) {
       this.position.z = world.currPlayerChunk.z + renderDistance - 1;
       this.position.x = world.currPlayerChunk.x - renderDistance + 1;

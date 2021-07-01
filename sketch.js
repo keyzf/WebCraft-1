@@ -10,7 +10,7 @@ function setup() {
   console.log("loading...");
   world = new World();
   let seed = simplex = Math.round(random(-999999,999999))
-  simplex = new SimplexNoise(seed)
+  simplex = new SimplexNoise(seed.toString())
 }
 
 function draw() {

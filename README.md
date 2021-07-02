@@ -2,7 +2,7 @@
 
 [Click here to play!](https://somepythonprogrammer.github.io/WebCraft/)
 
-### A minecraft clone written in javascript using p5.js and Three.js!
+### A minecraft clone written in javascript using p5.js!
 ### This is an open-source project and is open to contributions.
 ### And it really needs them to improve and turn into an actual game
 ### and not just some cubes.
